@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero">
+    <h1>MidNightBites <i class="fa-solid fa-pizza-slice" style="color:var(--accent)"></i></h1>
+    <p>Where you find the true taste! Discover the best restaurants and cuisines.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; max-width: 400px; margin: 0 auto;">
+        <a href="{% url 'open_signup' %}" class="btn btn-primary">Get Started</a>
+        <a href="{% url 'open_signin' %}" class="btn" style="border: 1px solid var(--primary); color: var(--primary);">Sign In</a>
+    </div>
+</div>
+{% endblock %}

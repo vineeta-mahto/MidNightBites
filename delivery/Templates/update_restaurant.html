@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Update Restaurant - MidNightBites{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Update {{ restaurant.name }}</h2>
+    <form action="{% url 'update_restaurant' restaurant.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" value="{{ restaurant.name }}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Picture URL</label>
+            <input type="url" name="picture" value="{{ restaurant.picture }}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Cuisine</label>
+            <input type="text" name="cuisine" value="{{ restaurant.cuisine }}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Rating</label>
+            <input type="number" step="0.1" name="rating" value="{{ restaurant.rating }}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Restaurant</button>
+    </form>
+</div>
+{% endblock %}

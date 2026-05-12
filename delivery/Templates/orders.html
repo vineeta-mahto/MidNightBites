@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Order Successful - MidNightBites{% endblock %}
+{% block content %}
+<div class="form-container" style="text-align: center; max-width: 600px; padding: 4rem 2rem;">
+    <div style="width: 100px; height: 100px; background: rgba(46, 213, 115, 0.1); color: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 2rem;">
+        <i class="fa-solid fa-check"></i>
+    </div>
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-main);">Order Placed!</h2>
+    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Thank you for your order, <strong>{{ customer.username }}</strong>. Your delicious food is being prepared and will be delivered to <strong>{{ customer.address }}</strong> shortly.</p>
+    
+    <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; text-align: left;">
+        <h4 style="margin-bottom: 1rem; color: var(--primary);">Order Summary</h4>
+        {% for item in cart_items %}
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                <span>{{ item.name }}</span>
+                <span>₹{{ item.price }}</span>
+            </div>
+        {% endfor %}
+        <div style="display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); font-weight: 700; color: var(--accent);">
+            <span>Total Paid</span>
+            <span>₹{{ total_price }}</span>
+        </div>
+    </div>
+    
+    <a href="{% url 'customer_home' %}" class="btn btn-primary" style="width: auto;">Order More Food</a>
+</div>
+{% endblock %}

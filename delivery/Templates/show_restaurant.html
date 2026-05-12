@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Manage Restaurants - MidNightBites{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h2 class="page-title">Manage Restaurants</h2>
+</div>
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Cuisine</th>
+                <th>Rating</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in restaurantList %}
+            <tr>
+                <td><img src="{{ r.picture }}" alt="{{ r.name }}"></td>
+                <td>{{ r.name }}</td>
+                <td>{{ r.cuisine }}</td>
+                <td><i class="fa-solid fa-star" style="color:var(--accent)"></i> {{ r.rating }}</td>
+                <td>
+                    <div class="table-actions">
+                        <a href="{% url 'open_update_restaurant' r.id %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'open_update_menu' r.id %}" class="btn btn-success">Menu</a>
+                        <a href="{% url 'delete_restaurant' r.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

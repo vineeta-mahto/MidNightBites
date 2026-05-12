@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MidNightBites{% endblock %}</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="{% if request.session.username == 'admin' %}{% url 'admin_home' %}{% elif request.session.username %}{% url 'customer_home' %}{% else %}{% url 'say_hello' %}{% endif %}">
+                <i class="fa-solid fa-pizza-slice"></i> MidNightBites
+            </a>
+        </div>
+        <div class="nav-links">
+            {% if request.session.username %}
+                {% if request.session.username == 'admin' %}
+                    <a href="{% url 'admin_home' %}">Dashboard</a>
+                    <a href="{% url 'open_add_restaurant' %}">Add Restaurant</a>
+                    <a href="{% url 'open_show_restaurant' %}">Manage Restaurants</a>
+                {% else %}
+                    <a href="{% url 'customer_home' %}">Restaurants</a>
+                    <a href="{% url 'show_cart' %}"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+                    <a href="{% url 'orders' %}"><i class="fa-solid fa-receipt"></i> Orders</a>
+                {% endif %}
+                <div class="user-profile">
+                    <span><i class="fa-solid fa-user"></i> {{ request.session.username }}</span>
+                    <a href="{% url 'logout' %}" class="btn-logout">Logout</a>
+                </div>
+            {% else %}
+                <a href="{% url 'open_signin' %}" class="btn-login">Sign In</a>
+                <a href="{% url 'open_signup' %}" class="btn-signup">Sign Up</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 MidNightBites. All rights reserved.</p>
+        <p>Where you find the true taste! <i class="fa-solid fa-burger" style="color:var(--accent)"></i></p>
+    </footer>
+</body>
+</html>

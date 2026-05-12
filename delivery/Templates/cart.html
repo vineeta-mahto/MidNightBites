@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Your Cart - MidNightBites{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h2 class="page-title"><i class="fa-solid fa-cart-shopping"></i> Your Cart</h2>
+</div>
+
+{% if itemList %}
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in itemList %}
+                <tr>
+                    <td><img src="{{ item.picture }}" alt="{{ item.name }}"></td>
+                    <td style="font-size: 1.1rem; font-weight: 500;">{{ item.name }}</td>
+                    <td>
+                        {% if item.vegeterian %}
+                            <span class="tag tag-veg">Veg</span>
+                        {% else %}
+                            <span class="tag tag-nonveg">Non-Veg</span>
+                        {% endif %}
+                    </td>
+                    <td style="color: var(--accent); font-weight: 600; font-size: 1.1rem;">₹{{ item.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="cart-summary">
+        <span class="cart-total">Total: ₹{{ total_price }}</span>
+        <a href="{% url 'checkout' %}" class="btn btn-success" style="width: auto; padding: 1rem 2rem; font-size: 1.1rem;">Proceed to Checkout <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+{% else %}
+    <div style="text-align: center; padding: 4rem 0;">
+        <i class="fa-solid fa-cart-arrow-down" style="font-size: 5rem; color: rgba(255,255,255,0.1); margin-bottom: 2rem;"></i>
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Your cart is empty!</h3>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Looks like you haven't added anything to your cart yet.</p>
+        <a href="{% url 'customer_home' %}" class="btn btn-primary" style="width: auto;">Browse Restaurants</a>
+    </div>
+{% endif %}
+{% endblock %}

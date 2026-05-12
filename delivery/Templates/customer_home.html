@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Restaurants - MidNightBites{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h2 class="page-title">Discover Restaurants</h2>
+</div>
+<div class="grid">
+    {% for r in restaurantList %}
+    <div class="card">
+        <img src="{{ r.picture }}" class="card-img" alt="{{ r.name }}">
+        <div class="card-content">
+            <h3 class="card-title">{{ r.name }} <span class="tag tag-veg"><i class="fa-solid fa-star"></i> {{ r.rating }}</span></h3>
+            <p class="card-desc"><i class="fa-solid fa-utensils"></i> {{ r.cuisine }}</p>
+            <a href="{% url 'view_menu' r.id %}" class="btn btn-primary">View Menu</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

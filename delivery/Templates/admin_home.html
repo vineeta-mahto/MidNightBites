@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard - MidNightBites{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h2 class="page-title">Admin Dashboard</h2>
+</div>
+<div class="grid">
+    <div class="card" style="align-items: center; justify-content: center; padding: 2rem; text-align: center;">
+        <i class="fa-solid fa-store" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+        <h3>Add Restaurant</h3>
+        <p class="card-desc" style="margin-top: 0.5rem;">Register a new restaurant to the platform.</p>
+        <a href="{% url 'open_add_restaurant' %}" class="btn btn-primary" style="width: auto;">Go to Add</a>
+    </div>
+    <div class="card" style="align-items: center; justify-content: center; padding: 2rem; text-align: center;">
+        <i class="fa-solid fa-list" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+        <h3>Manage Restaurants</h3>
+        <p class="card-desc" style="margin-top: 0.5rem;">View, update and manage menus.</p>
+        <a href="{% url 'open_show_restaurant' %}" class="btn btn-primary" style="width: auto; background: var(--accent);">Go to Manage</a>
+    </div>
+</div>
+{% endblock %}
